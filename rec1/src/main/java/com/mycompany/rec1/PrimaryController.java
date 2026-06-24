@@ -3,60 +3,48 @@ package com.mycompany.rec1;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
 
-/**
- *
- * @author Matheus Muniz - 1212B
- */
 public class PrimaryController {
 
     @FXML
-    private TextField getemail;
+    private javafx.scene.control.TextField getemail;
 
     @FXML
-    private TextField getcodigo;
+    private javafx.scene.control.TextField getcodigo;
 
     @FXML
     private void entrar() throws IOException {
+
         String email = getemail.getText();
         String codigo = getcodigo.getText();
 
-        if(email.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Erro!");
-            alert.setContentText("Preencha o campo Email!");
-            alert.showAndWait();
+        if (email.isEmpty() || codigo.isEmpty()) {
 
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Preencha todos os campos.");
+            alert.showAndWait();
+            return;
         }
-        else if(codigo.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Erro!");
-            alert.setContentText("Preencha o campo Código!");
+
+        boolean encontrado = false;
+
+        for (Leitor l : Lista.lista) {
+
+            if (l.getEmail().equals(email)
+                    && l.getCodigo().equals(codigo)) {
+
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (encontrado) {
+            App.setRoot("quartenary");
+        } else {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Email ou código inválidos.");
             alert.showAndWait();
-
-        } 
-        else {
-            boolean encontrado = false; 
-
-            for(Leitor l : Lista.lista) { 
-                if(l.getEmail().equals(email) &&
-                   l.getCodigo().equals(codigo)) {
-                    encontrado = true; 
-                }
-            }
-
-            if(encontrado) { 
-                App.setRoot("quartenary");
-
-            }
-            else {
-                Alert alert = new Alert(Alert.AlertType.ERROR); 
-                alert.setTitle("Erro!");
-                alert.setContentText("Email ou código inválidos!");
-                alert.showAndWait();
-            }
         }
     }
 
@@ -67,6 +55,6 @@ public class PrimaryController {
 
     @FXML
     private void recuperar() throws IOException {
-        App.setRoot("tertiery"); 
+        App.setRoot("tertiery");
     }
 }

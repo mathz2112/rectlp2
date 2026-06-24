@@ -4,10 +4,6 @@
  */
 package com.mycompany.rec1;
 
-/**
- *
- * @author Matheus Muniz - 1212B
- */
 public class QuartenaryController {
     
 }
