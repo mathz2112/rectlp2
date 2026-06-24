@@ -10,7 +10,8 @@
 <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.rec1.PrimaryController">
     <children>
 
-        <Label text="Biblioteca Digital"/>
+        <Label text="Biblioteca Digital"
+               style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
 
         <TextField fx:id="getemail"
                    promptText="Email"/>
@@ -22,13 +23,19 @@
               spacing="20">
 
             <Button text="Entrar"
-                    onAction="#entrar"/>
+                    style="-fx-background-color: green; -fx-text-fill: white;"
+                    onAction="#entrar"
+            />
 
             <Button text="Cadastrar"
-                    onAction="#cadastrar"/>
+                    style="-fx-background-color: green; -fx-text-fill: white;"
+                    onAction="#cadastrar"
+            />
 
             <Button text="Recuperar acesso"
-                    onAction="#recuperar"/>
+                    style="-fx-background-color: green; -fx-text-fill: white;"
+                    onAction="#recuperar"
+            />
 
         </HBox>
 
